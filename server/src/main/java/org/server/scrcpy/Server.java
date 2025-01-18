@@ -86,14 +86,14 @@ public final class Server {
             }
         });
 
-        try {
-            Process cmd = Runtime.getRuntime().exec("rm /data/local/tmp/scrcpy-server.jar");
-            cmd.waitFor();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        } catch (InterruptedException e1) {
-            e1.printStackTrace();
-        }
+//        try {
+//            Process cmd = Runtime.getRuntime().exec("rm /data/local/tmp/scrcpy-server.jar");
+//            cmd.waitFor();
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        } catch (InterruptedException e1) {
+//            e1.printStackTrace();
+//        }
 
         Options options = createOptions(args);
         scrcpy(options);

@@ -71,12 +71,16 @@ public class EventController {
                     }
                 } else {
                     int action = buffer[0];
+
+                    boolean interceptedByPowerKey = false;
+
                     if (action == MotionEvent.ACTION_UP && (!device.isScreenOn() || proximity)) {
                         if (hit) {
                             if (now - then < 250) {
                                 then = 0;
                                 hit = false;
                                 injectKeycode(KeyEvent.KEYCODE_POWER);
+                                interceptedByPowerKey = true;
                             } else {
                                 then = now;
                             }
@@ -84,8 +88,9 @@ public class EventController {
                             hit = true;
                             then = now;
                         }
+                    }
 
-                    } else {
+                    if (!interceptedByPowerKey) {
                         if (action == MotionEvent.ACTION_DOWN) {
                             lastMouseDown = now;
                         }

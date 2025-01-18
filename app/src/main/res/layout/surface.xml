@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:paddingLeft="0px"
     android:paddingTop="0px"
     android:paddingRight="0px"
@@ -20,10 +20,10 @@
 
     <LinearLayout
         android:id="@+id/nav_button_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
+        android:layout_width="24dp"
         android:background="@android:color/background_dark"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -50,22 +50,21 @@
         <!--            android:textSize="20sp" />-->
 
         <Button
-            android:id="@+id/back_button"
+            android:id="@+id/appswitch_button"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_selector"
-            android:text="@string/back_button"
-            android:textAlignment="center"
+            android:text="@string/appswitch_button"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 
         <Button
             android:id="@+id/home_button"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_selector"
             android:text="@string/home_button"
@@ -73,15 +72,15 @@
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 
-
         <Button
-            android:id="@+id/appswitch_button"
+            android:id="@+id/back_button"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_selector"
-            android:text="@string/appswitch_button"
+            android:text="@string/back_button"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 

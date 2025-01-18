@@ -57,6 +57,7 @@ public class ScreenEncoder implements Device.RotationListener {
         format.setString(MediaFormat.KEY_MIME, "video/avc");
         format.setInteger(MediaFormat.KEY_BIT_RATE, bitRate);
         format.setInteger(MediaFormat.KEY_FRAME_RATE, frameRate);
+        format.setFloat(MediaFormat.KEY_MAX_FPS_TO_ENCODER, 30);
         format.setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface);
         format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, iFrameInterval);
 

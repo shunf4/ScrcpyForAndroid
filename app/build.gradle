@@ -3,6 +3,9 @@ evaluationDependsOn(':server')
 apply plugin: 'com.android.application'
 apply plugin: 'org.lsposed.lsparanoid'
 
+if (file("sign.gradle").exists()) {
+    apply from: 'sign.gradle'
+}
 
 android {
     namespace 'org.client.scrcpy'
@@ -13,6 +16,7 @@ android {
     defaultConfig {
         applicationId "org.client.scrcpy"
         minSdkVersion 21
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 31
         versionCode 5
         versionName "1.0"
@@ -23,6 +27,31 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            if (file("sign.gradle").exists()) {
+                // Local environment
+                signingConfig signingConfigs.release
+                debuggable true
+
+                /* sign.gradle is like:
+android {
+    signingConfigs {
+        release {
+            keyAlias 'aliasxxx'
+            keyPassword 'passwordxxx'
+            storeFile file('../xxx.jks')
+            storePassword 'passwordxxx'
+        }
+    }
+}
+GitHub config is like:
+SIGNING_KEY:
+`openssl base64 < some_signing_key.jks | tr -d '\n'`
+ALIAS:
+KEY_STORE_PASSWORD:
+KEY_PASSWORD:
+*/
+            }
         }
     }
 

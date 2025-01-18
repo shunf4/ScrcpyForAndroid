@@ -428,9 +428,9 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         if (PreUtils.get(context, Constant.CONTROL_NAV, false) &&
                 !PreUtils.get(context, Constant.CONTROL_NO, false)) {
             if (landscape) {
-                this_dev_width = this_dev_width - 96;
+//                this_dev_width = this_dev_width - 96;
             } else {                                                 //100 is the height of nav bar but need multiples of 8.
-                this_dev_height = this_dev_height - 96;
+//                this_dev_height = this_dev_height - 96;
             }
         }
         int[] rem_res = scrcpy.get_remote_device_resolution();
@@ -444,10 +444,12 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
             if (remote_device_aspect_ratio > this_device_aspect_ratio) {
                 //TODO
                 float wantWidth = this_dev_height / remote_device_aspect_ratio;
-                int padding = (int) (this_dev_width - wantWidth) / 2;
-                linearLayout.setPadding(padding, 0, padding, 0);
+                // 由于把按键做到旁边了，取消padding
+//                int padding = (int) (this_dev_width - wantWidth) / 2;
+//                linearLayout.setPadding(padding, 0, padding, 0);
             } else if (remote_device_aspect_ratio < this_device_aspect_ratio) {
-                linearLayout.setPadding(0, (int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_width)), 0, 0);
+                  // 由于把按键做到旁边了，取消padding
+//                linearLayout.setPadding(0, (int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_width)), 0, 0);
             }
 
         } else {                                                                        //Landscape
@@ -455,10 +457,11 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
 //            Log.d("fuck", "set_display_nd_touch_land: "+this_device_aspect_ratio);
             if (remote_device_aspect_ratio > this_device_aspect_ratio) {
                 float wantHeight = this_dev_width / remote_device_aspect_ratio;
-                int padding = (int) (this_dev_height - wantHeight) / 2;
-                linearLayout.setPadding(0, padding, 0, padding);
+                // 由于把按键做到底部了，取消padding
+//                int padding = (int) (this_dev_height - wantHeight) / 2;
+//                linearLayout.setPadding(0, padding, 0, padding);
             } else if (remote_device_aspect_ratio < this_device_aspect_ratio) {
-                linearLayout.setPadding(((int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_height)) / 2), 0, ((int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_height)) / 2), 0);
+//                linearLayout.setPadding(((int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_height)) / 2), 0, ((int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_height)) / 2), 0);
             }
 
         }
@@ -715,7 +718,8 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
     @Override
     protected void onResume() {
         super.onResume();
-        if (!first_time && !result_of_Rotation) {
+//        if (!first_time && !result_of_Rotation) {
+        if (!first_time) {
             final View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -749,7 +753,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
             }
         } else {
             long now = SystemClock.uptimeMillis();
-            if (now < timestamp + 1000) {
+            if (now < timestamp + 2300) {
                 timestamp = 0;
                 if (serviceBound) {
                     showMainView(true);
@@ -768,14 +772,14 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         if (sensorEvent.sensor.getType() == Sensor.TYPE_PROXIMITY) {
             if (sensorEvent.values[0] == 0) {
                 if (serviceBound) {
-                    // 该事件会使远程手机 按下电源键，触发方式：按住距离传感器，然后点击屏幕即可锁屏
+                    // 该事件会使远程手机 按下电源键，触发方式：按住距离传感器，然后双击屏幕即可锁屏
                     // 发送横竖屏会导致抬起事件无效
-                    // scrcpy.sendKeyevent(28);
+                    scrcpy.sendKeyevent(28);
                 }
             } else {
                 if (serviceBound) {
                     // 发送横竖屏会导致抬起事件无效
-                    // scrcpy.sendKeyevent(29);
+                    scrcpy.sendKeyevent(29);
                 }
             }
         }
