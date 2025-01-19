@@ -89,6 +89,7 @@ public class App extends Application implements Application.ActivityLifecycleCal
         env.put("HOME", mContext.getFilesDir().getAbsolutePath());
         env.put("TMPDIR", mContext.getCacheDir().getAbsolutePath());
         env.put("ANDROID_ADB_SERVER_PORT", "5137");
+        env.put("ADB_LOCAL_TRANSPORT_MAX_PORT", "0");
 
         return ExecUtil.adbCommend(cmds, env, mContext.getFilesDir());
     }
