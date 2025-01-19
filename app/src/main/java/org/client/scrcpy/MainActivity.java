@@ -430,8 +430,10 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
                 !PreUtils.get(context, Constant.CONTROL_NO, false)) {
             if (landscape) {
 //                this_dev_width = this_dev_width - 96;
+                this_dev_height = this_dev_height - 30;
             } else {                                                 //100 is the height of nav bar but need multiples of 8.
 //                this_dev_height = this_dev_height - 96;
+                this_dev_width = this_dev_width - 30;
             }
         }
         int[] rem_res = scrcpy.get_remote_device_resolution();
@@ -439,18 +441,28 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         int remote_device_width = rem_res[0];
         float remote_device_aspect_ratio = (float) remote_device_height / remote_device_width;
 
+//        Log.d("fuck", "landscape: "+landscape);
         if (!landscape) {                                                            //Portrait
             float this_device_aspect_ratio = this_dev_height / this_dev_width;
 //            Log.d("fuck", "set_display_nd_touch: "+this_device_aspect_ratio);
             if (remote_device_aspect_ratio > this_device_aspect_ratio) {
                 //TODO
                 float wantWidth = this_dev_height / remote_device_aspect_ratio;
-                // 由于把按键做到旁边了，取消padding
-//                int padding = (int) (this_dev_width - wantWidth) / 2;
-//                linearLayout.setPadding(padding, 0, padding, 0);
+                int padding = (int) (this_dev_width - wantWidth);
+                View sv = findViewById(R.id.decoder_surface);
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) sv.getLayoutParams();
+                int a = padding * 84 / 100, b = padding * 8 / 100, c = padding - a - b;
+                lp.setMargins(a, 0, b, 0);
+                sv.setLayoutParams(lp);
+                linearLayout.setPadding(0, 0, c, 0);
             } else if (remote_device_aspect_ratio < this_device_aspect_ratio) {
-                  // 由于把按键做到旁边了，取消padding
-//                linearLayout.setPadding(0, (int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_width)), 0, 0);
+                int padding = (int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_width));
+                View sv = findViewById(R.id.decoder_surface);
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) sv.getLayoutParams();
+                int a = padding * 84 / 100, b = padding * 8 / 100, c = padding - a - b;
+                lp.setMargins(0, a, 0, b);
+                linearLayout.setPadding(0, 0, 0, c);
+                sv.setLayoutParams(lp);
             }
 
         } else {                                                                        //Landscape
@@ -458,11 +470,21 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
 //            Log.d("fuck", "set_display_nd_touch_land: "+this_device_aspect_ratio);
             if (remote_device_aspect_ratio > this_device_aspect_ratio) {
                 float wantHeight = this_dev_width / remote_device_aspect_ratio;
-                // 由于把按键做到底部了，取消padding
-//                int padding = (int) (this_dev_height - wantHeight) / 2;
-//                linearLayout.setPadding(0, padding, 0, padding);
+                int padding = (int) (this_dev_height - wantHeight);
+                View sv = findViewById(R.id.decoder_surface);
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) sv.getLayoutParams();
+                int a = padding * 84 / 100, b = padding * 8 / 100, c = padding - a - b;
+                lp.setMargins(0, a, 0, b);
+                sv.setLayoutParams(lp);
+                linearLayout.setPadding(0, 0, 0, c);
             } else if (remote_device_aspect_ratio < this_device_aspect_ratio) {
-//                linearLayout.setPadding(((int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_height)) / 2), 0, ((int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_height)) / 2), 0);
+                int padding = (int) (((this_device_aspect_ratio - remote_device_aspect_ratio) * this_dev_width));
+                View sv = findViewById(R.id.decoder_surface);
+                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) sv.getLayoutParams();
+                int a = padding * 84 / 100, b = padding * 8 / 100, c = padding - a - b;
+                lp.setMargins(a, 0, b, 0);
+                sv.setLayoutParams(lp);
+                linearLayout.setPadding(0, 0, c, 0);
             }
 
         }
