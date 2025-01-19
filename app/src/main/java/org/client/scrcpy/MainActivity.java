@@ -136,6 +136,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             serviceBound = false;
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     };
 
@@ -706,6 +707,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
     @Override
     protected void onPause() {
         super.onPause();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (serviceBound) {
             scrcpy.pause();
             resumeScrcpy = true;
@@ -849,6 +851,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
      * 连接成功了，而且成功的显示了画面出来
      */
     protected void connectSuccessExt() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         errorCount = 0;
     }
 
