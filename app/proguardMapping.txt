@@ -1,10 +1,10 @@
 # compiler: R8
 # compiler_version: 8.0.35
-# min_api: 21
+# min_api: 17
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.1"}
-# pg_map_id: 190d7c2
-# pg_map_hash: SHA-256 190d7c29c5dd7a478941d1ef72ba5d87c077fa78798db3d068784f46e640592f
+# pg_map_id: b0e33de
+# pg_map_hash: SHA-256 b0e33debf52f1220cde33e4004b5ee6391628a38126c8783271bee8a6eed6915
 androidx.annotation.Keep -> androidx.annotation.Keep:
 # {"id":"sourceFile","fileName":"Keep.java"}
 io.noties.markwon.AbstractMarkwonPlugin -> io.noties.markwon.AbstractMarkwonPlugin:
@@ -2093,17 +2093,17 @@ org.client.scrcpy.App -> org.client.scrcpy.App:
       # {"id":"com.android.tools.r8.synthesized"}
     26:28:void <clinit>() -> <clinit>
     21:21:void <init>() -> <init>
-    81:93:java.lang.String adbCmd(java.lang.String[]) -> adbCmd
+    81:94:java.lang.String adbCmd(java.lang.String[]) -> adbCmd
     39:42:void attachBaseContext(android.content.Context) -> attachBaseContext
     45:49:void init() -> init
     71:76:void lambda$startAdbServer$0() -> lambda$startAdbServer$0
-    98:99:void onActivityCreated(android.app.Activity,android.os.Bundle) -> onActivityCreated
-    128:129:void onActivityDestroyed(android.app.Activity) -> onActivityDestroyed
-    114:114:void onActivityPaused(android.app.Activity) -> onActivityPaused
-    109:109:void onActivityResumed(android.app.Activity) -> onActivityResumed
-    124:124:void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> onActivitySaveInstanceState
-    104:104:void onActivityStarted(android.app.Activity) -> onActivityStarted
-    119:119:void onActivityStopped(android.app.Activity) -> onActivityStopped
+    99:100:void onActivityCreated(android.app.Activity,android.os.Bundle) -> onActivityCreated
+    129:130:void onActivityDestroyed(android.app.Activity) -> onActivityDestroyed
+    115:115:void onActivityPaused(android.app.Activity) -> onActivityPaused
+    110:110:void onActivityResumed(android.app.Activity) -> onActivityResumed
+    125:125:void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle) -> onActivitySaveInstanceState
+    105:105:void onActivityStarted(android.app.Activity) -> onActivityStarted
+    120:120:void onActivityStopped(android.app.Activity) -> onActivityStopped
     32:35:void onCreate() -> onCreate
     64:77:void startAdbServer() -> startAdbServer
 org.client.scrcpy.App$$ExternalSyntheticLambda0 -> org.client.scrcpy.App$$ExternalSyntheticLambda0:
@@ -2305,50 +2305,55 @@ org.client.scrcpy.MainActivity -> org.client.scrcpy.MainActivity:
     60:60:int access$500(org.client.scrcpy.MainActivity) -> access$500
     60:60:void access$600(org.client.scrcpy.MainActivity) -> access$600
     60:60:android.content.Context access$700(org.client.scrcpy.MainActivity) -> access$700
-    309:310:void checkFree() -> checkFree
-    316:316:void checkFree(java.lang.String) -> checkFree
-    856:857:void connectExitExt() -> connectExitExt
-    863:889:void connectExitExt(boolean) -> connectExitExt
-    794:846:void connectScrcpyServer(java.lang.String) -> connectScrcpyServer
-    852:853:void connectSuccessExt() -> connectSuccessExt
-    694:703:void errorDisconnect() -> errorDisconnect
-    518:539:void getAttributes() -> getAttributes
-    542:556:java.lang.String[] getHistoryList() -> getHistoryList
-    320:332:java.lang.String getRemoteData(java.lang.String) -> getRemoteData
-    379:412:void get_saved_preferences() -> get_saved_preferences
-    877:878:void lambda$connectExitExt$12() -> lambda$connectExitExt$12
-    881:882:void lambda$connectExitExt$13() -> lambda$connectExitExt$13
-    830:835:void lambda$connectScrcpyServer$10() -> lambda$connectScrcpyServer$10
-    803:841:void lambda$connectScrcpyServer$11(java.lang.String,int,int) -> lambda$connectScrcpyServer$11
-    696:702:void lambda$errorDisconnect$9() -> lambda$errorDisconnect$9
-    402:411:void lambda$get_saved_preferences$4(android.widget.Switch,android.widget.Switch,android.view.View) -> lambda$get_saved_preferences$4
-    255:257:void lambda$scrcpy_main$0(android.view.View) -> lambda$scrcpy_main$0
-    268:271:void lambda$scrcpy_main$1(android.widget.EditText,android.view.View) -> lambda$scrcpy_main$1
-    294:298:void lambda$scrcpy_main$2(org.client.scrcpy.MarkdownView,java.lang.String) -> lambda$scrcpy_main$2
-    290:303:void lambda$scrcpy_main$3(org.client.scrcpy.MarkdownView) -> lambda$scrcpy_main$3
-    470:470:boolean lambda$set_display_nd_touch$5(android.view.View,android.view.MotionEvent) -> lambda$set_display_nd_touch$5
-    480:480:void lambda$set_display_nd_touch$6(android.view.View) -> lambda$set_display_nd_touch$6
-    483:483:void lambda$set_display_nd_touch$7(android.view.View) -> lambda$set_display_nd_touch$7
-    486:486:void lambda$set_display_nd_touch$8(android.view.View) -> lambda$set_display_nd_touch$8
-    670:688:void loadNewRotation() -> loadNewRotation
-    791:791:void onAccuracyChanged(android.hardware.Sensor,int) -> onAccuracyChanged
-    747:768:void onBackPressed() -> onBackPressed
-    176:220:void onCreate(android.os.Bundle) -> onCreate
-    708:716:void onPause() -> onPause
-    720:743:void onResume() -> onResume
-    224:234:void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
-    772:786:void onSensorChanged(android.hardware.SensorEvent) -> onSensorChanged
-    563:590:boolean saveHistory(java.lang.String) -> saveHistory
-    238:306:void scrcpy_main() -> scrcpy_main
-    493:514:void setSpinner(int,int,java.lang.String) -> setSpinner
-    416:489:void set_display_nd_touch() -> set_display_nd_touch
-    336:356:void showListPopulWindow(android.widget.EditText) -> showListPopulWindow
-    143:144:void showMainView() -> showMainView
-    148:171:void showMainView(boolean) -> showMainView
-    662:665:void start_Scrcpy_service() -> start_Scrcpy_service
-    601:621:void start_screen_copy_magic() -> start_screen_copy_magic
-    594:597:void swapDimensions() -> swapDimensions
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda0 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda0:
+    310:311:void checkFree() -> checkFree
+    317:317:void checkFree(java.lang.String) -> checkFree
+    882:883:void connectExitExt() -> connectExitExt
+    889:915:void connectExitExt(boolean) -> connectExitExt
+    819:871:void connectScrcpyServer(java.lang.String) -> connectScrcpyServer
+    877:879:void connectSuccessExt() -> connectSuccessExt
+    717:726:void errorDisconnect() -> errorDisconnect
+    541:562:void getAttributes() -> getAttributes
+    565:579:java.lang.String[] getHistoryList() -> getHistoryList
+    321:333:java.lang.String getRemoteData(java.lang.String) -> getRemoteData
+    380:413:void get_saved_preferences() -> get_saved_preferences
+    903:904:void lambda$connectExitExt$12() -> lambda$connectExitExt$12
+    907:908:void lambda$connectExitExt$13() -> lambda$connectExitExt$13
+    855:860:void lambda$connectScrcpyServer$10() -> lambda$connectScrcpyServer$10
+    828:866:void lambda$connectScrcpyServer$11(java.lang.String,int,int) -> lambda$connectScrcpyServer$11
+    719:725:void lambda$errorDisconnect$9() -> lambda$errorDisconnect$9
+    403:412:void lambda$get_saved_preferences$4(android.widget.Switch,android.widget.Switch,android.view.View) -> lambda$get_saved_preferences$4
+    256:258:void lambda$scrcpy_main$0(android.view.View) -> lambda$scrcpy_main$0
+    269:272:void lambda$scrcpy_main$1(android.widget.EditText,android.view.View) -> lambda$scrcpy_main$1
+    295:299:void lambda$scrcpy_main$2(org.client.scrcpy.MarkdownView,java.lang.String) -> lambda$scrcpy_main$2
+    291:304:void lambda$scrcpy_main$3(org.client.scrcpy.MarkdownView) -> lambda$scrcpy_main$3
+    493:493:boolean lambda$set_display_nd_touch$5(android.view.View,android.view.MotionEvent) -> lambda$set_display_nd_touch$5
+    503:503:void lambda$set_display_nd_touch$6(android.view.View) -> lambda$set_display_nd_touch$6
+    506:506:void lambda$set_display_nd_touch$7(android.view.View) -> lambda$set_display_nd_touch$7
+    509:509:void lambda$set_display_nd_touch$8(android.view.View) -> lambda$set_display_nd_touch$8
+    693:711:void loadNewRotation() -> loadNewRotation
+    816:816:void onAccuracyChanged(android.hardware.Sensor,int) -> onAccuracyChanged
+    772:793:void onBackPressed() -> onBackPressed
+    177:221:void onCreate(android.os.Bundle) -> onCreate
+    731:740:void onPause() -> onPause
+    744:768:void onResume() -> onResume
+    225:235:void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    797:811:void onSensorChanged(android.hardware.SensorEvent) -> onSensorChanged
+    586:613:boolean saveHistory(java.lang.String) -> saveHistory
+    239:307:void scrcpy_main() -> scrcpy_main
+    516:537:void setSpinner(int,int,java.lang.String) -> setSpinner
+    417:512:void set_display_nd_touch() -> set_display_nd_touch
+    337:357:void showListPopulWindow(android.widget.EditText) -> showListPopulWindow
+    144:145:void showMainView() -> showMainView
+    149:172:void showMainView(boolean) -> showMainView
+    685:688:void start_Scrcpy_service() -> start_Scrcpy_service
+    624:644:void start_screen_copy_magic() -> start_screen_copy_magic
+    617:620:void swapDimensions() -> swapDimensions
+org.client.scrcpy.MainActivity$$ExternalSyntheticApiModelOutline0 -> org.client.scrcpy.MainActivity$$ExternalSyntheticApiModelOutline0:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticApiModelOutline$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$0.m(android.view.Window,int) -> m
+      # {"id":"com.android.tools.r8.synthesized"}
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda1 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda1:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$55e904809e1dba675420235de20403d560afc31f9c664b5cd04593742ee11228$0.f$0 -> f$0
@@ -2356,15 +2361,16 @@ org.client.scrcpy.MainActivity$$ExternalSyntheticLambda0 -> org.client.scrcpy.Ma
       # {"id":"com.android.tools.r8.synthesized"}
     0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$55e904809e1dba675420235de20403d560afc31f9c664b5cd04593742ee11228$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda1 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda1:
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda10 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda10:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
-    org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$55e904809e1dba675420235de20403d560afc31f9c664b5cd04593742ee11228$1.f$0 -> f$0
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$55e904809e1dba675420235de20403d560afc31f9c664b5cd04593742ee11228$1.<init>(org.client.scrcpy.MainActivity) -> <init>
+    android.widget.Switch org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b4790abe2602c6c22aadaa178feaea40685ebc7ac4c87867ecbc05173ede00d9$0.f$1 -> f$1
+    android.widget.Switch org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b4790abe2602c6c22aadaa178feaea40685ebc7ac4c87867ecbc05173ede00d9$0.f$0 -> f$0
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b4790abe2602c6c22aadaa178feaea40685ebc7ac4c87867ecbc05173ede00d9$0.<init>(android.widget.Switch,android.widget.Switch) -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$55e904809e1dba675420235de20403d560afc31f9c664b5cd04593742ee11228$1.run() -> run
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b4790abe2602c6c22aadaa178feaea40685ebc7ac4c87867ecbc05173ede00d9$0.onClick(android.view.View) -> onClick
       # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda10 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda10:
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda11 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda11:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b49a8639edf9d62278286c6e71acbea583923aed03b290fbae37d3162f4f7a1c$0.f$0 -> f$0
@@ -2372,7 +2378,7 @@ org.client.scrcpy.MainActivity$$ExternalSyntheticLambda10 -> org.client.scrcpy.M
       # {"id":"com.android.tools.r8.synthesized"}
     0:0:boolean org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b49a8639edf9d62278286c6e71acbea583923aed03b290fbae37d3162f4f7a1c$0.onTouch(android.view.View,android.view.MotionEvent) -> onTouch
       # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda11 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda11:
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda12 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda12:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b49a8639edf9d62278286c6e71acbea583923aed03b290fbae37d3162f4f7a1c$1.f$0 -> f$0
@@ -2380,7 +2386,7 @@ org.client.scrcpy.MainActivity$$ExternalSyntheticLambda11 -> org.client.scrcpy.M
       # {"id":"com.android.tools.r8.synthesized"}
     0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b49a8639edf9d62278286c6e71acbea583923aed03b290fbae37d3162f4f7a1c$1.onClick(android.view.View) -> onClick
       # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda12 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda12:
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda13 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda13:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b49a8639edf9d62278286c6e71acbea583923aed03b290fbae37d3162f4f7a1c$2.f$0 -> f$0
@@ -2388,7 +2394,7 @@ org.client.scrcpy.MainActivity$$ExternalSyntheticLambda12 -> org.client.scrcpy.M
       # {"id":"com.android.tools.r8.synthesized"}
     0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b49a8639edf9d62278286c6e71acbea583923aed03b290fbae37d3162f4f7a1c$2.onClick(android.view.View) -> onClick
       # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda13 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda13:
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda14 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda14:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b49a8639edf9d62278286c6e71acbea583923aed03b290fbae37d3162f4f7a1c$3.f$0 -> f$0
@@ -2396,7 +2402,7 @@ org.client.scrcpy.MainActivity$$ExternalSyntheticLambda13 -> org.client.scrcpy.M
       # {"id":"com.android.tools.r8.synthesized"}
     0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b49a8639edf9d62278286c6e71acbea583923aed03b290fbae37d3162f4f7a1c$3.onClick(android.view.View) -> onClick
       # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda14 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda14:
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda15 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda15:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     org.client.scrcpy.MarkdownView org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$c0dbf7b9059b35d97864292e48de3f36dd54c23134e7a95acb3dbbdcd306a13b$0.f$1 -> f$1
@@ -2409,38 +2415,46 @@ org.client.scrcpy.MainActivity$$ExternalSyntheticLambda14 -> org.client.scrcpy.M
 org.client.scrcpy.MainActivity$$ExternalSyntheticLambda2 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda2:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
+    org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$55e904809e1dba675420235de20403d560afc31f9c664b5cd04593742ee11228$1.f$0 -> f$0
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$55e904809e1dba675420235de20403d560afc31f9c664b5cd04593742ee11228$1.<init>(org.client.scrcpy.MainActivity) -> <init>
+      # {"id":"com.android.tools.r8.synthesized"}
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$55e904809e1dba675420235de20403d560afc31f9c664b5cd04593742ee11228$1.run() -> run
+      # {"id":"com.android.tools.r8.synthesized"}
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda3 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda3:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
     org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$769b200fce5ed93886ffc2bf5fafc1b600bd3c379fe1da04dc6433a792c7602d$0.f$0 -> f$0
     0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$769b200fce5ed93886ffc2bf5fafc1b600bd3c379fe1da04dc6433a792c7602d$0.<init>(org.client.scrcpy.MainActivity) -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
     0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$769b200fce5ed93886ffc2bf5fafc1b600bd3c379fe1da04dc6433a792c7602d$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda3 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda3:
-# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
-# {"id":"com.android.tools.r8.synthesized"}
-    org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$0.f$0 -> f$0
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$0.<init>(org.client.scrcpy.MainActivity) -> <init>
-      # {"id":"com.android.tools.r8.synthesized"}
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$0.onClick(android.view.View) -> onClick
-      # {"id":"com.android.tools.r8.synthesized"}
 org.client.scrcpy.MainActivity$$ExternalSyntheticLambda4 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda4:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
-    android.widget.EditText org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$1.f$1 -> f$1
-    org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$1.f$0 -> f$0
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$1.<init>(org.client.scrcpy.MainActivity,android.widget.EditText) -> <init>
+    org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$2.f$0 -> f$0
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$2.<init>(org.client.scrcpy.MainActivity) -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$1.onClick(android.view.View) -> onClick
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$2.onClick(android.view.View) -> onClick
       # {"id":"com.android.tools.r8.synthesized"}
 org.client.scrcpy.MainActivity$$ExternalSyntheticLambda5 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda5:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
-    org.client.scrcpy.MarkdownView org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$2.f$1 -> f$1
-    org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$2.f$0 -> f$0
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$2.<init>(org.client.scrcpy.MainActivity,org.client.scrcpy.MarkdownView) -> <init>
+    android.widget.EditText org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$3.f$1 -> f$1
+    org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$3.f$0 -> f$0
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$3.<init>(org.client.scrcpy.MainActivity,android.widget.EditText) -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$2.run() -> run
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$3.onClick(android.view.View) -> onClick
       # {"id":"com.android.tools.r8.synthesized"}
 org.client.scrcpy.MainActivity$$ExternalSyntheticLambda6 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda6:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    org.client.scrcpy.MarkdownView org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$4.f$1 -> f$1
+    org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$4.f$0 -> f$0
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$4.<init>(org.client.scrcpy.MainActivity,org.client.scrcpy.MarkdownView) -> <init>
+      # {"id":"com.android.tools.r8.synthesized"}
+    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$b017aff573e62d5baed5ac0a3fac733980f7d404b3491a4946e546e4cfca198b$4.run() -> run
+      # {"id":"com.android.tools.r8.synthesized"}
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda7 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda7:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     int org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$e74f2dcfd36b9b491916a7ca2edbc772354f1ce55d3ff8eaaaee8e89ae1f03d0$0.f$3 -> f$3
@@ -2451,7 +2465,7 @@ org.client.scrcpy.MainActivity$$ExternalSyntheticLambda6 -> org.client.scrcpy.Ma
       # {"id":"com.android.tools.r8.synthesized"}
     0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$1$e74f2dcfd36b9b491916a7ca2edbc772354f1ce55d3ff8eaaaee8e89ae1f03d0$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda7 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda7:
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda8 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda8:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     org.client.scrcpy.MainActivity org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$36dc9941344a89615d8618f96ef0320f784f4e3cd888628dfc051e81e2bf21cc$0.f$0 -> f$0
@@ -2459,21 +2473,12 @@ org.client.scrcpy.MainActivity$$ExternalSyntheticLambda7 -> org.client.scrcpy.Ma
       # {"id":"com.android.tools.r8.synthesized"}
     0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$36dc9941344a89615d8618f96ef0320f784f4e3cd888628dfc051e81e2bf21cc$0.run() -> run
       # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda8 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda8:
+org.client.scrcpy.MainActivity$$ExternalSyntheticLambda9 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda9:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
     void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$36dc9941344a89615d8618f96ef0320f784f4e3cd888628dfc051e81e2bf21cc$1.<init>() -> <init>
       # {"id":"com.android.tools.r8.synthesized"}
     0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$36dc9941344a89615d8618f96ef0320f784f4e3cd888628dfc051e81e2bf21cc$1.run() -> run
-      # {"id":"com.android.tools.r8.synthesized"}
-org.client.scrcpy.MainActivity$$ExternalSyntheticLambda9 -> org.client.scrcpy.MainActivity$$ExternalSyntheticLambda9:
-# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
-# {"id":"com.android.tools.r8.synthesized"}
-    android.widget.Switch org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b4790abe2602c6c22aadaa178feaea40685ebc7ac4c87867ecbc05173ede00d9$0.f$1 -> f$1
-    android.widget.Switch org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b4790abe2602c6c22aadaa178feaea40685ebc7ac4c87867ecbc05173ede00d9$0.f$0 -> f$0
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b4790abe2602c6c22aadaa178feaea40685ebc7ac4c87867ecbc05173ede00d9$0.<init>(android.widget.Switch,android.widget.Switch) -> <init>
-      # {"id":"com.android.tools.r8.synthesized"}
-    0:0:void org.client.scrcpy.MainActivity$$InternalSyntheticLambda$2$b4790abe2602c6c22aadaa178feaea40685ebc7ac4c87867ecbc05173ede00d9$0.onClick(android.view.View) -> onClick
       # {"id":"com.android.tools.r8.synthesized"}
 org.client.scrcpy.MainActivity$1 -> org.client.scrcpy.MainActivity$1:
 # {"id":"sourceFile","fileName":"MainActivity.java"}
@@ -2485,7 +2490,7 @@ org.client.scrcpy.MainActivity$1 -> org.client.scrcpy.MainActivity$1:
     114:126:void lambda$onServiceConnected$0(int) -> lambda$onServiceConnected$0
     103:127:void lambda$onServiceConnected$1() -> lambda$onServiceConnected$1
     93:134:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
-    138:139:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+    138:140:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
 org.client.scrcpy.MainActivity$1$$ExternalSyntheticLambda0 -> org.client.scrcpy.MainActivity$1$$ExternalSyntheticLambda0:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
 # {"id":"com.android.tools.r8.synthesized"}
@@ -2505,13 +2510,13 @@ org.client.scrcpy.MainActivity$1$$ExternalSyntheticLambda1 -> org.client.scrcpy.
       # {"id":"com.android.tools.r8.synthesized"}
 org.client.scrcpy.MainActivity$2 -> org.client.scrcpy.MainActivity$2:
 # {"id":"sourceFile","fileName":"MainActivity.java"}
-    348:348:void <init>(org.client.scrcpy.MainActivity,android.widget.EditText,java.lang.String[],android.widget.ListPopupWindow) -> <init>
-    351:353:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    349:349:void <init>(org.client.scrcpy.MainActivity,android.widget.EditText,java.lang.String[],android.widget.ListPopupWindow) -> <init>
+    352:354:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 org.client.scrcpy.MainActivity$3 -> org.client.scrcpy.MainActivity$3:
 # {"id":"sourceFile","fileName":"MainActivity.java"}
-    497:497:void <init>(org.client.scrcpy.MainActivity,java.lang.String) -> <init>
-    500:501:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
-    505:506:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
+    520:520:void <init>(org.client.scrcpy.MainActivity,java.lang.String) -> <init>
+    523:524:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
+    528:529:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
 org.client.scrcpy.MarkdownView -> org.client.scrcpy.MarkdownView:
 # {"id":"sourceFile","fileName":"MarkdownView.java"}
     0:0:void $r8$lambda$16OIGW-JK11BhjIhNJXWIC7WAyQ(org.client.scrcpy.MarkdownView,android.content.Context) -> $r8$lambda$16OIGW-JK11BhjIhNJXWIC7WAyQ
@@ -2596,38 +2601,37 @@ org.client.scrcpy.R$styleable -> org.client.scrcpy.R$styleable:
 org.client.scrcpy.Scrcpy -> org.client.scrcpy.Scrcpy:
 # {"id":"sourceFile","fileName":"Scrcpy.java"}
     0:0:void <clinit>() -> <clinit>
-    29:51:void <init>() -> <init>
-    105:110:void StopService() -> StopService
-    29:29:java.lang.String access$000(org.client.scrcpy.Scrcpy) -> access$000
-    29:29:int access$100(org.client.scrcpy.Scrcpy) -> access$100
-    29:29:void access$200(org.client.scrcpy.Scrcpy,java.lang.String,int) -> access$200
-    154:154:boolean check_socket_connection() -> check_socket_connection
-    150:150:int[] get_remote_device_resolution() -> get_remote_device_resolution
-    56:56:android.os.IBinder onBind(android.content.Intent) -> onBind
-    92:95:void pause() -> pause
-    98:102:void resume() -> resume
-    158:172:void sendKeyevent(int) -> sendKeyevent
-    64:70:void setParms(android.view.Surface,int,int) -> setParms
-    60:61:void setServiceCallbacks(org.client.scrcpy.Scrcpy$ServiceCallbacks) -> setServiceCallbacks
-    73:89:void start(android.view.Surface,java.lang.String,int,int) -> start
-    175:254:void startConnection(java.lang.String,int) -> startConnection
-    254:297:void startConnection(java.lang.String,int) -> startConnection
-    264:321:void startConnection(java.lang.String,int) -> startConnection
-    297:321:void startConnection(java.lang.String,int) -> startConnection
-    257:321:void startConnection(java.lang.String,int) -> startConnection
-    237:321:void startConnection(java.lang.String,int) -> startConnection
-    214:345:void startConnection(java.lang.String,int) -> startConnection
-    321:345:void startConnection(java.lang.String,int) -> startConnection
-    345:349:void startConnection(java.lang.String,int) -> startConnection
-    119:146:boolean touchevent(android.view.MotionEvent,boolean,int,int) -> touchevent
+    31:53:void <init>() -> <init>
+    107:112:void StopService() -> StopService
+    31:31:java.lang.String access$000(org.client.scrcpy.Scrcpy) -> access$000
+    31:31:int access$100(org.client.scrcpy.Scrcpy) -> access$100
+    31:31:void access$200(org.client.scrcpy.Scrcpy,java.lang.String,int) -> access$200
+    156:156:boolean check_socket_connection() -> check_socket_connection
+    152:152:int[] get_remote_device_resolution() -> get_remote_device_resolution
+    58:58:android.os.IBinder onBind(android.content.Intent) -> onBind
+    94:97:void pause() -> pause
+    100:104:void resume() -> resume
+    160:174:void sendKeyevent(int) -> sendKeyevent
+    66:72:void setParms(android.view.Surface,int,int) -> setParms
+    62:63:void setServiceCallbacks(org.client.scrcpy.Scrcpy$ServiceCallbacks) -> setServiceCallbacks
+    75:91:void start(android.view.Surface,java.lang.String,int,int) -> start
+    177:256:void startConnection(java.lang.String,int) -> startConnection
+    256:323:void startConnection(java.lang.String,int) -> startConnection
+    299:323:void startConnection(java.lang.String,int) -> startConnection
+    259:323:void startConnection(java.lang.String,int) -> startConnection
+    239:323:void startConnection(java.lang.String,int) -> startConnection
+    216:347:void startConnection(java.lang.String,int) -> startConnection
+    323:347:void startConnection(java.lang.String,int) -> startConnection
+    347:351:void startConnection(java.lang.String,int) -> startConnection
+    121:148:boolean touchevent(android.view.MotionEvent,boolean,int,int) -> touchevent
 org.client.scrcpy.Scrcpy$1 -> org.client.scrcpy.Scrcpy$1:
 # {"id":"sourceFile","fileName":"Scrcpy.java"}
-    82:82:void <init>(org.client.scrcpy.Scrcpy) -> <init>
-    85:86:void run() -> run
+    84:84:void <init>(org.client.scrcpy.Scrcpy) -> <init>
+    87:88:void run() -> run
 org.client.scrcpy.Scrcpy$MyServiceBinder -> org.client.scrcpy.Scrcpy$MyServiceBinder:
 # {"id":"sourceFile","fileName":"Scrcpy.java"}
-    357:357:void <init>(org.client.scrcpy.Scrcpy) -> <init>
-    359:359:org.client.scrcpy.Scrcpy getService() -> getService
+    359:359:void <init>(org.client.scrcpy.Scrcpy) -> <init>
+    361:361:org.client.scrcpy.Scrcpy getService() -> getService
 org.client.scrcpy.Scrcpy$ServiceCallbacks -> org.client.scrcpy.Scrcpy$ServiceCallbacks:
 # {"id":"sourceFile","fileName":"Scrcpy.java"}
 org.client.scrcpy.ScrcpyHost -> org.client.scrcpy.ScrcpyHost:
@@ -2710,6 +2714,11 @@ org.client.scrcpy.decoder.VideoDecoder$Worker -> org.client.scrcpy.decoder.Video
     87:104:void decodeSample(byte[],int,int,long,int) -> decodeSample
     109:131:void run() -> run
     60:61:void setRunning(boolean) -> setRunning
+org.client.scrcpy.decoder.VideoDecoder$Worker$$ExternalSyntheticApiModelOutline0 -> org.client.scrcpy.decoder.VideoDecoder$Worker$$ExternalSyntheticApiModelOutline0:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    0:0:java.nio.ByteBuffer org.client.scrcpy.decoder.VideoDecoder$Worker$$InternalSyntheticApiModelOutline$1$bc07085dbee95da350f73b2bdc5b2cc60d620f919ec87b92d6250c15eb6cddd5$0.m(android.media.MediaCodec,int) -> m
+      # {"id":"com.android.tools.r8.synthesized"}
 org.client.scrcpy.model.ByteUtils -> org.client.scrcpy.model.ByteUtils:
 # {"id":"sourceFile","fileName":"ByteUtils.java"}
     30:30:int bytesToInt(byte[]) -> bytesToInt
@@ -3219,6 +3228,11 @@ org.commonmark.internal.util.Html5Entities -> org.commonmark.internal.util.Html5
     15:16:void <clinit>() -> <clinit>
     20:39:java.lang.String entityToString(java.lang.String) -> entityToString
     45:63:java.util.Map readEntities() -> readEntities
+org.commonmark.internal.util.Html5Entities$$ExternalSyntheticBackport0 -> org.commonmark.internal.util.Html5Entities$$ExternalSyntheticBackport0:
+# {"id":"sourceFile","fileName":"R8$$SyntheticClass"}
+# {"id":"com.android.tools.r8.synthesized"}
+    0:0:void org.commonmark.internal.util.Html5Entities$$InternalSyntheticBackport$3$03e522b4ae0b61d39a2cc6e3dfe61ef7ae9ce751062d7382ac1028ecd5f88814$1.m(java.lang.Throwable,java.lang.Throwable) -> m
+      # {"id":"com.android.tools.r8.synthesized"}
 org.commonmark.internal.util.LinkScanner -> org.commonmark.internal.util.LinkScanner:
 # {"id":"sourceFile","fileName":"LinkScanner.java"}
     34:56:int scanLinkDestination(java.lang.CharSequence,int) -> scanLinkDestination

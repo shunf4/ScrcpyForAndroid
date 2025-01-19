@@ -15,7 +15,7 @@ android {
     compileSdkVersion 31
     defaultConfig {
         applicationId "org.client.scrcpy"
-        minSdkVersion 21
+        minSdkVersion 17
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 31
         versionCode 5

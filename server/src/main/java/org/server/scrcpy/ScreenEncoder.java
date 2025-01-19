@@ -191,7 +191,6 @@ public class ScreenEncoder implements Device.RotationListener {
         return builder.toString();
     }
 
-    @SuppressLint("NewApi")
     private boolean encode(MediaCodec codec, OutputStream outputStream) throws IOException {
         @SuppressWarnings("checkstyle:MagicNumber")
 //        byte[] buf = new byte[bitRate / 8]; // may contain up to 1 second of video
@@ -208,7 +207,11 @@ public class ScreenEncoder implements Device.RotationListener {
                 if (outputBufferId >= 0) {
                     ByteBuffer outputBuffer;
 
-                    outputBuffer = codec.getOutputBuffer(outputBufferId);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        outputBuffer = codec.getOutputBuffer(outputBufferId);
+                    } else {
+                        outputBuffer = codec.getOutputBuffers()[outputBufferId];
+                    }
 
                     if (bufferInfo.size > 0 && outputBuffer != null) {
                         outputBuffer.position(bufferInfo.offset);
