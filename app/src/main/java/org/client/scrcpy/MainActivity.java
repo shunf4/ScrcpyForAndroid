@@ -743,7 +743,8 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
     protected void onResume() {
         super.onResume();
 //        if (!first_time && !result_of_Rotation) {
-        if (!first_time) {
+//        if (!first_time) {
+          if (true) {
             final View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
