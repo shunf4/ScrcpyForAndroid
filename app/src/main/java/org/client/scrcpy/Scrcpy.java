@@ -20,6 +20,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -129,9 +131,8 @@ public class Scrcpy extends Service {
             realW = realH * remoteW / remoteH;
         }
 
-
         int[] buf = new int[]{touch_event.getAction(), touch_event.getButtonState(), (int) (touch_event.getX() * realW / displayW), (int) (touch_event.getY() * realH / displayH)};
-        final byte[] array = new byte[buf.length * 4]; // https://stackoverflow.com/questions/2183240/java-integer-to-byte-array
+        final byte[] array = new byte[buf.length * 4 + 8]; // https://stackoverflow.com/questions/2183240/java-integer-to-byte-array
         for (int j = 0; j < buf.length; j++) {
             final int c = buf[j];
             array[j * 4] = (byte) ((c & 0xFF000000) >> 24);
@@ -139,6 +140,7 @@ public class Scrcpy extends Service {
             array[j * 4 + 2] = (byte) ((c & 0xFF00) >> 8);
             array[j * 4 + 3] = (byte) (c & 0xFF);
         }
+        ByteBuffer.wrap(array, array.length - 8, 8).order(ByteOrder.BIG_ENDIAN).putLong(touch_event.getEventTime());
         if (LetServceRunning.get()) {
             event.offer(array);
         }
@@ -184,7 +186,7 @@ public class Scrcpy extends Service {
             try {
 //                Log.e("Scrcpy","Connecting to " + serverAdr);
 //                socket = new Socket(serverHost, 7007);
-                Log.e("Scrcpy", "Connecting to " + LOCAL_IP);
+                Log.e("Scrcpy", "Connecting to " + ip + ":" + port);
 //                try {
 //                    //TODO: 转发和启动需要一定的时间，如果直接连接，可能导致失败
 //                    Thread.sleep(2000);
@@ -192,7 +194,7 @@ public class Scrcpy extends Service {
 //                    throw new RuntimeException(e);
 //                }
                 socket = new Socket(ip, port);
-                Log.e("Scrcpy", "Connecting to " + LOCAL_IP + " success");
+                Log.e("Scrcpy", "Connecting to " + ip + ":" + port + " success");
 
                 // 能够正常进行连接，说明可能建立了 tcp 连接，需要等待数据
                 // 一次等待时间为 2s ，最多等待五次，也就是 10秒

@@ -2,6 +2,7 @@ package org.server.scrcpy;
 
 import android.graphics.Point;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.InputDevice;
 import android.view.InputEvent;
 import android.view.KeyCharacterMap;
@@ -11,6 +12,9 @@ import android.view.MotionEvent;
 import org.server.scrcpy.wrappers.InputManager;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Locale;
 
 
 public class EventController {
@@ -20,6 +24,7 @@ public class EventController {
     private final MotionEvent.PointerProperties[] pointerProperties = {new MotionEvent.PointerProperties()};
     private final MotionEvent.PointerCoords[] pointerCoords = {new MotionEvent.PointerCoords()};
     private long lastMouseDown;
+    private long lastMouseDownTargetDevTime;
     private float then;
     private boolean hit = false;
     private boolean proximity = false;
@@ -58,7 +63,8 @@ public class EventController {
 
         while (true) {
             //           handleEvent();
-            int[] buffer = connection.NewreceiveControlEvent();
+            byte[][] rawCtrlEventBytesWrapper = new byte[][]{new byte[]{}};
+            int[] buffer = connection.NewreceiveControlEvent(rawCtrlEventBytesWrapper);
             if (buffer != null) {
                 long now = SystemClock.uptimeMillis();
                 if (buffer[2] == 0 && buffer[3] == 0) {
@@ -91,8 +97,18 @@ public class EventController {
                     }
 
                     if (!interceptedByPowerKey) {
+                        long targetDevEvTime = ByteBuffer.wrap(rawCtrlEventBytesWrapper[0], rawCtrlEventBytesWrapper[0].length - 8, 8).order(ByteOrder.BIG_ENDIAN).getLong();
+                        long timeDelta;
                         if (action == MotionEvent.ACTION_DOWN) {
                             lastMouseDown = now;
+                            lastMouseDownTargetDevTime = targetDevEvTime;
+                            timeDelta = 0;
+                        } else {
+                            if (lastMouseDown != 0 && lastMouseDownTargetDevTime != 0) {
+                                timeDelta = (targetDevEvTime - lastMouseDownTargetDevTime) - (now - lastMouseDown);
+                            } else {
+                                timeDelta = 0;
+                            }
                         }
                         int button = buffer[1];
                         int X = buffer[2];
@@ -100,7 +116,8 @@ public class EventController {
                         Point point = new Point(X, Y);
                         Point newpoint = device.NewgetPhysicalPoint(point);
                         setPointerCoords(newpoint);
-                        MotionEvent event = MotionEvent.obtain(lastMouseDown, now, action, 1, pointerProperties, pointerCoords, 0, button, 1f, 1f, 0, 0, InputDevice.SOURCE_TOUCHSCREEN, 0);
+                        MotionEvent event = MotionEvent.obtain(lastMouseDown, now + timeDelta, action, 1, pointerProperties, pointerCoords, 0, button, 1f, 1f, 0, 0, InputDevice.SOURCE_TOUCHSCREEN, 0);
+                        // Log.i("ScrcpyServerEventCtrl", String.format(Locale.ENGLISH, "KeyEvent   dt=%014d   et=%014d   delt=%04d   a=%02d   x=%04.3f   y=%04.3f   bt=%02d", lastMouseDown, now + timeDelta, timeDelta, action, pointerCoords[0].x, pointerCoords[0].y, button));
                         injectEvent(event);
                     }
                 }

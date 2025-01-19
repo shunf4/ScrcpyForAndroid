@@ -83,15 +83,15 @@ public final class DroidConnection implements Closeable {
     }
 
 
-    public int[] NewreceiveControlEvent() throws IOException {
+    public int[] NewreceiveControlEvent(byte[][] rawCtrlEventBytesWrapper) throws IOException {
 
         byte[] bufLen = new byte[1];
-        byte[] buf = new byte[16];
+        byte[] buf = new byte[24];
         int n = inputStream.read(bufLen, 0, 1);
         if (n != 1) {
             throw new EOFException("Event controller socket closed");
         }
-        if (bufLen[0] < 4 || bufLen[0] > 16) {
+        if (bufLen[0] < 4 || bufLen[0] > 24) {
             throw new EOFException("Bad bufLen");
         }
         n =  fillBufferCompletely(inputStream, buf, bufLen[0]);
@@ -105,6 +105,7 @@ public final class DroidConnection implements Closeable {
                     (((int) (buf[i * 4 + 1]) << 16) & 0xFF0000) |
                     (((int) (buf[i * 4 + 2]) << 8) & 0xFF00) |
                     ((int) (buf[i * 4 + 3]) & 0xFF);
+        rawCtrlEventBytesWrapper[0] = buf;
         return array;
 
 
