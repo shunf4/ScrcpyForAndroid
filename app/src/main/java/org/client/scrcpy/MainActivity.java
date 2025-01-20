@@ -14,9 +14,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.text.TextUtils;
@@ -38,6 +38,8 @@ import android.widget.ListPopupWindow;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import org.client.scrcpy.utils.HttpRequest;
 import org.client.scrcpy.utils.PreUtils;
@@ -81,6 +83,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
     private Surface surface;
     private Scrcpy scrcpy;
     private long timestamp = 0;
+    private Runnable hideSystemUiAndResetLayout;
 
     // private byte[] fileBase64;
     private LinearLayout linearLayout;
@@ -187,6 +190,21 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         // 读取屏幕是横屏、还是竖屏
         landscape = getApplication().getResources().getConfiguration().orientation
                 != Configuration.ORIENTATION_PORTRAIT;
+        hideSystemUiAndResetLayout = new Runnable() {
+            @Override
+            public void run() {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                                View.SYSTEM_UI_FLAG_FULLSCREEN |
+                                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                set_display_nd_touch();
+            }
+        };
+
         if (first_time) {
             scrcpy_main();
         } else {
@@ -218,6 +236,23 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
                 scrollView.setVisibility(View.INVISIBLE);
             }
         }
+
+        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int i) {
+                hideSystemUiAndResetLayoutWithDelay(2700);
+            }
+        });
+    }
+
+    private void hideSystemUiAndResetLayoutWithDelay(int delay) {
+        Handler h = getWindow().getDecorView().getHandler();
+        Log.w("Scrcpy", "hideSystemUiWithDelay " + Log.getStackTraceString(new Exception()));
+        Log.w("Scrcpy", "hideSystemUiWithDelay handler=" + (h==null ? "null" : h.toString()));
+        if (h != null) {
+            h.removeCallbacks(hideSystemUiAndResetLayout);
+            h.postDelayed(hideSystemUiAndResetLayout, delay);
+        }
     }
 
     @Override
@@ -239,7 +274,9 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             this.getWindow().setStatusBarColor(getColor(R.color.status_bar));
         } else {
-            this.getWindow().setStatusBarColor(getResources().getColor(R.color.status_bar));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                this.getWindow().setStatusBarColor(getResources().getColor(R.color.status_bar));
+            }
         }
         final View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.VISIBLE);
@@ -414,6 +451,12 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
 
     @SuppressLint("ClickableViewAccessibility")
     public void set_display_nd_touch() {
+        if (linearLayout == null) {
+            return;
+        }
+        if (scrcpy == null || !scrcpy.check_socket_connection()) {
+            return;
+        }
         DisplayMetrics metrics = new DisplayMetrics();
         if (ViewConfiguration.get(context).hasPermanentMenuKey()) {
             getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -622,14 +665,8 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
     @SuppressLint("ClickableViewAccessibility")
     private void start_screen_copy_magic() {
         setContentView(R.layout.surface);
-        final View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        hideSystemUiAndResetLayout.run();
+        hideSystemUiAndResetLayoutWithDelay(2000);
         surfaceView = findViewById(R.id.decoder_surface);
         surface = surfaceView.getHolder().getSurface();
         final LinearLayout nav_bar = findViewById(R.id.nav_button_bar);
@@ -743,16 +780,9 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
     protected void onResume() {
         super.onResume();
 //        if (!first_time && !result_of_Rotation) {
-//        if (!first_time) {
-          if (true) {
-            final View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        if (!first_time) {
+            hideSystemUiAndResetLayout.run();
+            hideSystemUiAndResetLayoutWithDelay(2000);
             if (serviceBound) {
                 // 黑屏无需修复， 因为只是自带的配置问题
                 linearLayout = findViewById(R.id.container1);
@@ -904,10 +934,18 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
                         }, () -> {
 
                             // 取消重试
-                            finishAndRemoveTask();
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                finishAndRemoveTask();
+                            } else {
+                                finish();
+                            }
                         });
             } else {
-                finishAndRemoveTask();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    finishAndRemoveTask();
+                } else {
+                    finish();
+                }
             }
         }
 //        Log.i("Scrcpy", "headlessMode： " + headlessMode +
