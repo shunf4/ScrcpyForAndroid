@@ -39,8 +39,6 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
 import org.client.scrcpy.utils.HttpRequest;
 import org.client.scrcpy.utils.PreUtils;
 import org.client.scrcpy.utils.Progress;

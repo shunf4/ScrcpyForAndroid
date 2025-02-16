@@ -319,9 +319,11 @@ public class Scrcpy extends Service {
             try {
                 byte[] sendevent = event.poll();
                 if (sendevent != null) {
-                    waitEvent = false;
+                    byte[] packet = new byte[sendevent.length + 1];
+                    packet[0] = (byte) sendevent.length;
+                    System.arraycopy(sendevent, 0, packet, 1, sendevent.length);
                     try {
-                        dataOutputStream.write(sendevent, 0, sendevent.length);
+                        dataOutputStream.write(packet, 0, packet.length);
                     } catch (IOException e) {
                         e.printStackTrace();
                         if (serviceCallbacks != null) {

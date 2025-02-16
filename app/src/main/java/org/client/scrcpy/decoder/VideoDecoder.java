@@ -95,7 +95,7 @@ public class VideoDecoder {
                     }
                     if (buffer != null) {
                         buffer.put(data, offset, size);
-                        mCodec.queueInputBuffer(index, 0, size, presentationTimeUs, flags);
+                        mCodec.queueInputBuffer(index, 0, size, 0, flags);
                     }
                 }
             }
