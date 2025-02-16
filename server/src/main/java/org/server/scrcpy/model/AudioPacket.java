@@ -1,4 +1,4 @@
-package org.client.scrcpy.model;
+package org.server.scrcpy.model;
 
 import java.nio.ByteBuffer;
 
@@ -7,16 +7,16 @@ import java.nio.ByteBuffer;
  * https://www.github.com/alexmprog/VideoCodec
  */
 
-public class VideoPacket extends MediaPacket {
+public class AudioPacket extends MediaPacket {
 
     public Flag flag;
     public long presentationTimeStamp;
     public byte[] data;
 
-    public VideoPacket() {
+    public AudioPacket() {
     }
 
-    public VideoPacket(Type type, Flag flag, long presentationTimeStamp, byte[] data) {
+    public AudioPacket(Type type, Flag flag, long presentationTimeStamp, byte[] data) {
         this.type = type;
         this.flag = flag;
         this.presentationTimeStamp = presentationTimeStamp;
@@ -24,8 +24,8 @@ public class VideoPacket extends MediaPacket {
     }
 
     // create packet from byte array
-    public static VideoPacket fromArray(byte[] values) {
-        VideoPacket videoPacket = new VideoPacket();
+    public static AudioPacket fromArray(byte[] values) {
+        AudioPacket videoPacket = new AudioPacket();
 
         // should be a type value - 1 byte
         byte typeValue = values[0];
@@ -47,31 +47,6 @@ public class VideoPacket extends MediaPacket {
         videoPacket.data = data;
 
         return videoPacket;
-    }
-
-    public static VideoPacket readHead(byte[] values) {
-        VideoPacket videoPacket = new VideoPacket();
-
-        // should be a type value - 1 byte
-        byte typeValue = values[0];
-        // should be a flag value - 1 byte
-        byte flagValue = values[1];
-
-        videoPacket.type = Type.getType(typeValue);
-        videoPacket.flag = VideoPacket.Flag.getFlag(flagValue);
-
-        // should be 8 bytes for timestamp
-        byte[] timeStamp = new byte[8];
-        System.arraycopy(values, 2, timeStamp, 0, 8);
-        videoPacket.presentationTimeStamp = ByteUtils.bytesToLong(timeStamp);
-
-        videoPacket.data = null;
-
-        return videoPacket;
-    }
-
-    public static int getHeadLen(){
-        return 10;
     }
 
     // create byte array

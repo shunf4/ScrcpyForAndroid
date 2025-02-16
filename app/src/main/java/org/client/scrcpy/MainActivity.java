@@ -49,7 +49,6 @@ import org.client.scrcpy.utils.Util;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.lsposed.lsparanoid.Obfuscate;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -58,7 +57,6 @@ import java.io.InputStream;
 import java.util.HashMap;
 
 
-@Obfuscate
 public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, SensorEventListener {
 
     // 是否直接连接远程
@@ -77,6 +75,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
     SensorManager sensorManager;
     private SendCommands sendCommands;
     private int videoBitrate;
+    private int delayControl;
     private Context context;
     private String serverAdr = null;
     private SurfaceView surfaceView;
@@ -101,7 +100,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
                     Progress.showDialog(MainActivity.this, getString(R.string.please_wait));
                 }
                 scrcpy.start(surface, Scrcpy.LOCAL_IP + ":" + Scrcpy.LOCAL_FORWART_PORT,
-                        screenHeight, screenWidth);
+                        screenHeight, screenWidth, delayControl);
                 ThreadUtils.workPost(() -> {
                     int count = 50;
                     while (count > 0 && !scrcpy.check_socket_connection()) {
@@ -315,59 +314,6 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
                 scrollView.setVisibility(View.INVISIBLE);
             }
         }
-
-        MarkdownView tipsView = findViewById(R.id.tips_tv);
-        String oldTips = PreUtils.get(App.mContext, "tips", "");
-        if (!TextUtils.isEmpty(oldTips)) {
-            tipsView.setMarkwon(oldTips);
-        }
-
-        // 加载远程的提示
-        ThreadUtils.execute(() -> {
-            try {
-                String remoteTips = getRemoteData(Constant.KEY_TIPS);
-                if (!TextUtils.isEmpty(remoteTips)) {
-                    Log.i("Scrcpy", remoteTips);
-                    ThreadUtils.post(() -> {
-                        if (!MainActivity.this.isFinishing() && (tipsView != null)) {
-                            PreUtils.put(App.mContext, "tips", remoteTips);
-                            tipsView.setMarkwon(remoteTips);
-                        }
-                    });
-                }
-            } catch (JSONException ignore) {
-            }
-
-        });
-
-        checkFree();
-    }
-
-    private void checkFree() {
-        checkFree("");
-    }
-
-
-    private void checkFree(String old) {
-        // check app alive
-        // TODO
-    }
-
-
-    private String getRemoteData(String key) throws JSONException {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("appId", Constant.VERIFY_APPID);
-        params.put("deviceId", PreUtils.get(App.mContext, Constant.USER_ID, ""));
-        params.put("key", key);
-        String remoteValue = HttpRequest.sendGet(Constant.VERIFY_URL + Constant.VERIFY_DATA_PATH, params);
-        if (TextUtils.isEmpty(remoteValue) || Boolean.parseBoolean(remoteValue)) {
-            return "";
-        }
-        JSONObject jsonObject = new JSONObject(remoteValue);
-        if (jsonObject.optInt("code") == 200) {
-            return jsonObject.optString("data");
-        }
-        return "";
     }
 
     private void showListPopulWindow(EditText mEditText) {
@@ -430,6 +376,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         aSwitch1.setChecked(PreUtils.get(context, Constant.CONTROL_NAV, false));
         setSpinner(R.array.options_resolution_values, R.id.spinner_video_resolution, Constant.PREFERENCE_SPINNER_RESOLUTION);
         setSpinner(R.array.options_bitrate_keys, R.id.spinner_video_bitrate, Constant.PREFERENCE_SPINNER_BITRATE);
+        setSpinner(R.array.options_delay_keys, R.id.delay_control_spinner, Constant.PREFERENCE_SPINNER_DELAY);
         if (aSwitch0.isChecked()) {
             aSwitch1.setClickable(false);
             aSwitch1.setTextColor(Color.GRAY);
@@ -591,6 +538,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         }
         final Spinner videoResolutionSpinner = findViewById(R.id.spinner_video_resolution);
         final Spinner videoBitrateSpinner = findViewById(R.id.spinner_video_bitrate);
+        final Spinner delayControlSpinner = findViewById(R.id.delay_control_spinner);
         final Switch a_Switch0 = findViewById(R.id.switch0);
         boolean no_control = a_Switch0.isChecked();
         final Switch a_Switch1 = findViewById(R.id.switch1);
@@ -602,6 +550,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         screenHeight = Integer.parseInt(videoResolutions[0]);
         screenWidth = Integer.parseInt(videoResolutions[1]);
         videoBitrate = getResources().getIntArray(R.array.options_bitrate_values)[videoBitrateSpinner.getSelectedItemPosition()];
+        delayControl = getResources().getIntArray(R.array.options_delay_values)[delayControlSpinner.getSelectedItemPosition()];
     }
 
     private String[] getHistoryList() {

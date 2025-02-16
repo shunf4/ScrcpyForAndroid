@@ -1,10 +1,9 @@
 package org.server.scrcpy;
 
-import org.lsposed.lsparanoid.Obfuscate;
+import org.server.scrcpy.util.Workarounds;
 
 import java.io.IOException;
 
-@Obfuscate
 public final class Server {
 
     private static String ip = null;
@@ -14,6 +13,8 @@ public final class Server {
     }
 
     private static void scrcpy(Options options) throws IOException {
+        Workarounds.apply();  // init content
+
         final Device device = new Device(options);
         try (DroidConnection connection = DroidConnection.open(ip)) {
             ScreenEncoder screenEncoder = new ScreenEncoder(options.getBitRate());

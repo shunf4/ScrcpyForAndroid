@@ -2,13 +2,11 @@ package org.server.scrcpy;
 
 import android.util.Log;
 
-import org.lsposed.lsparanoid.Obfuscate;
 
 /**
  * Log both to Android logger (so that logs are visible in "adb logcat") and standard output/error (so that they are visible in the terminal
  * directly).
  */
-@Obfuscate
 public final class Ln {
 
     private static final String TAG = "scrcpy";
@@ -48,6 +46,13 @@ public final class Ln {
             Log.e(TAG, message, throwable);
             System.out.println("ERROR: " + message);
             throwable.printStackTrace();
+        }
+    }
+
+    public static void e(String message) {
+        if (isEnabled(Level.ERROR)) {
+            Log.e(TAG, message);
+            System.out.println("ERROR: " + message);
         }
     }
 

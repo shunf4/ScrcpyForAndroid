@@ -4,10 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.IBinder;
 import android.os.IInterface;
 
-import org.lsposed.lsparanoid.Obfuscate;
 
 import java.lang.reflect.Method;
-@Obfuscate
 @SuppressLint("PrivateApi")
 public final class ServiceManager {
     private static final Method getServiceMethod;
@@ -16,6 +14,8 @@ public final class ServiceManager {
     private static DisplayManager displayManager;
     private static InputManager inputManager;
     private static PowerManager powerManager;
+
+    private static ActivityManager activityManager;
 
     static {
         try {
@@ -65,5 +65,12 @@ public final class ServiceManager {
             powerManager = new PowerManager(getService("power", "android.os.IPowerManager"));
         }
         return powerManager;
+    }
+
+    public static ActivityManager getActivityManager() {
+        if (activityManager == null) {
+            activityManager = ActivityManager.create();
+        }
+        return activityManager;
     }
 }
