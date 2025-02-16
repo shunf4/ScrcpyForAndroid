@@ -4,6 +4,7 @@
     <string name="label_server_ip">Remote Device IP address, For example: 192.168.0.73</string>
     <string name="label_video_resolution">Resolution</string>
     <string name="delay_control">Delay Control</string>
+    <string name="enable_audio">Enable Audio</string>
     <string name="label_video_bitrate">Bitrate</string>
     <string name="label_x">x</string>
     <string name="action_start">Start</string>

@@ -361,6 +361,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         final EditText editTextServerHost = findViewById(R.id.editText_server_host);
         final Switch aSwitch0 = findViewById(R.id.switch0);
         final Switch aSwitch1 = findViewById(R.id.switch1);
+        final Switch eaSw = findViewById(R.id.enable_audio_switch);
         String historySpServerAdr = PreUtils.get(context, Constant.CONTROL_REMOTE_ADDR, "");
         if (TextUtils.isEmpty(historySpServerAdr)) {
             String[] historyList = getHistoryList();
@@ -372,6 +373,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         }
         aSwitch0.setChecked(PreUtils.get(context, Constant.CONTROL_NO, false));
         aSwitch1.setChecked(PreUtils.get(context, Constant.CONTROL_NAV, false));
+        eaSw.setChecked(PreUtils.get(context, "enable_audio", false));
         setSpinner(R.array.options_resolution_values, R.id.spinner_video_resolution, Constant.PREFERENCE_SPINNER_RESOLUTION);
         setSpinner(R.array.options_bitrate_keys, R.id.spinner_video_bitrate, Constant.PREFERENCE_SPINNER_BITRATE);
         setSpinner(R.array.options_delay_keys, R.id.delay_control_spinner, Constant.PREFERENCE_SPINNER_DELAY);
@@ -541,8 +543,10 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
         boolean no_control = a_Switch0.isChecked();
         final Switch a_Switch1 = findViewById(R.id.switch1);
         boolean nav = a_Switch1.isChecked();
+        final Switch ea_Switch = findViewById(R.id.enable_audio_switch);
         PreUtils.put(context, Constant.CONTROL_NO, no_control);
         PreUtils.put(context, Constant.CONTROL_NAV, nav);
+        PreUtils.put(context, "enable_audio", ea_Switch.isChecked());
 
         final String[] videoResolutions = getResources().getStringArray(R.array.options_resolution_values)[videoResolutionSpinner.getSelectedItemPosition()].split("x");
         screenHeight = Integer.parseInt(videoResolutions[0]);
@@ -827,7 +831,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
                         serverPort,
                         localForwardPort,
                         Scrcpy.LOCAL_IP,
-                        videoBitrate, Math.max(screenHeight, screenWidth)) == 0) {
+                        videoBitrate, Math.max(screenHeight, screenWidth), (PreUtils.get(context, "enable_audio", false)) ? 1 : 0) == 0) {
                     ThreadUtils.post(() -> {
                         if (!MainActivity.this.isFinishing()) {
                             // 进入主线程

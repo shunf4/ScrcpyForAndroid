@@ -71,10 +71,18 @@ public final class Server {
         options.setBitRate(bitRate);
 
         if (args.length < 4) {
+                return options;
+        }
+
+        int shouldEnableAudio = Integer.parseInt(args[3]);
+        options.setShouldEnableAudio(shouldEnableAudio != 0);
+
+        if (args.length < 5) {
             return options;
         }
+
         // use "adb forward" instead of "adb tunnel"? (so the server must listen)
-        boolean tunnelForward = Boolean.parseBoolean(args[3]);
+        boolean tunnelForward = Boolean.parseBoolean(args[4]);
         options.setTunnelForward(tunnelForward);
         return options;
     }

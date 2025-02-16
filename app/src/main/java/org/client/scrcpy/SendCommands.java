@@ -27,11 +27,11 @@ public class SendCommands {
 
     }
 
-    public int SendAdbCommands(Context context, final String ip, int port, int forwardport, String localip, int bitrate, int size) {
-        return this.SendAdbCommands(context, null, ip, port, forwardport, localip, bitrate, size);
+    public int SendAdbCommands(Context context, final String ip, int port, int forwardport, String localip, int bitrate, int size, int audio) {
+        return this.SendAdbCommands(context, null, ip, port, forwardport, localip, bitrate, size, audio);
     }
 
-    public int SendAdbCommands(Context context, final byte[] fileBase64, final String ip, int port, int forwardport, String localip, int bitrate, int size) {
+    public int SendAdbCommands(Context context, final byte[] fileBase64, final String ip, int port, int forwardport, String localip, int bitrate, int size, int audio) {
         this.context = context;
         status = 1;
         String[] commands = new String[]{
@@ -43,7 +43,7 @@ public class SendCommands {
                 "org.server.scrcpy.Server",
                 "/" + localip,
                 Long.toString(size),
-                Long.toString(bitrate) + ";"
+                Long.toString(bitrate), Long.toString(audio) + ";"
         };
         ThreadUtils.execute(() -> {
             try {

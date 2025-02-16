@@ -142,7 +142,9 @@ public class ScreenEncoder implements Device.RotationListener {
         }
         outputStream.write(array, 0, array.length);   // Sending device resolution
 
-        startAudioCapture(outputStream);  // start audio capture
+        if (device.isShouldEnableAudio()) {
+            startAudioCapture(outputStream);  // start audio capture
+        }
 
         MediaFormat format = createFormat(bitRate, frameRate, iFrameInterval);
         device.setRotationListener(this);

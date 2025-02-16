@@ -13,9 +13,11 @@ public final class Device {
     // private final ServiceManager serviceManager = new ServiceManager();
     private ScreenInfo screenInfo;
     private RotationListener rotationListener;
+    private boolean shouldEnableAudio;
 
     public Device(Options options) {
         screenInfo = computeScreenInfo(options.getMaxSize());
+        shouldEnableAudio = options.isShouldEnableAudio();
         registerRotationWatcher(new IRotationWatcher.Stub() {
             @Override
             public void onRotationChanged(int rotation) throws RemoteException {
@@ -115,6 +117,14 @@ public final class Device {
         int scaledX = point.x * deviceSize.getWidth() / videoSize.getWidth();
         int scaledY = point.y * deviceSize.getHeight() / videoSize.getHeight();
         return new Point(scaledX, scaledY);
+    }
+
+    public boolean isShouldEnableAudio() {
+        return shouldEnableAudio;
+    }
+
+    public void setShouldEnableAudio(boolean shouldEnableAudio) {
+        this.shouldEnableAudio = shouldEnableAudio;
     }
 
 

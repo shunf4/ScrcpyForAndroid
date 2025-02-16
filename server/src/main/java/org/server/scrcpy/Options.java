@@ -3,6 +3,7 @@ package org.server.scrcpy;
 public class Options {
     private int maxSize;
     private int bitRate;
+    private boolean shouldEnableAudio;
     private boolean tunnelForward;
 
     public int getMaxSize() {
@@ -27,5 +28,13 @@ public class Options {
 
     public void setTunnelForward(boolean tunnelForward) {
         this.tunnelForward = tunnelForward;
+    }
+
+    public boolean isShouldEnableAudio() {
+        return shouldEnableAudio;
+    }
+
+    public void setShouldEnableAudio(boolean shouldEnableAudio) {
+        this.shouldEnableAudio = shouldEnableAudio;
     }
 }

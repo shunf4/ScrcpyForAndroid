@@ -15,6 +15,7 @@ import org.client.scrcpy.model.AudioPacket;
 import org.client.scrcpy.model.ByteUtils;
 import org.client.scrcpy.model.MediaPacket;
 import org.client.scrcpy.model.VideoPacket;
+import org.client.scrcpy.utils.PreUtils;
 import org.client.scrcpy.utils.Util;
 
 import java.io.DataInputStream;
@@ -72,7 +73,9 @@ public class Scrcpy extends Service {
         this.surface = NewSurface;
 
         videoDecoder.start();
-        audioDecoder.start();
+        if (audioDecoder != null) {
+            audioDecoder.start();
+        }
 
 
         updateAvailable.set(true);
@@ -82,9 +85,12 @@ public class Scrcpy extends Service {
     public void start(Surface surface, String serverAdr, int screenHeight, int screenWidth, int delay) {
         this.videoDecoder = new VideoDecoder();
         videoDecoder.start();
-
-        this.audioDecoder = new AudioDecoder();
-        audioDecoder.start();
+        if (PreUtils.get(this, "enable_audio", false)) {
+            this.audioDecoder = new AudioDecoder();
+        }
+        if (audioDecoder != null) {
+            audioDecoder.start();
+        }
 
         String[] serverInfo = Util.getServerHostAndPort(serverAdr);
         this.serverHost = serverInfo[0];
@@ -199,8 +205,12 @@ public class Scrcpy extends Service {
 
         videoDecoder = new VideoDecoder();
         videoDecoder.start();
-        audioDecoder = new AudioDecoder();
-        audioDecoder.start();
+        if (PreUtils.get(this, "enable_audio", false)) {
+            audioDecoder = new AudioDecoder();
+        }
+        if (audioDecoder != null) {
+            audioDecoder.start();
+        }
 
         DataInputStream dataInputStream = null;
         DataOutputStream dataOutputStream = null;

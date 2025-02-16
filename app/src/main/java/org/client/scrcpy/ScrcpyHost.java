@@ -13,6 +13,8 @@ import android.view.Surface;
 import android.view.SurfaceView;
 import android.widget.Toast;
 
+import org.client.scrcpy.utils.PreUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -155,7 +157,7 @@ public class ScrcpyHost implements Scrcpy.ServiceCallbacks {
                     serverPort,
                     localForwardPort,
                     Scrcpy.LOCAL_IP,
-                    videoBitrate, Math.max(screenHeight, screenWidth)) == 0) {
+                    videoBitrate, Math.max(screenHeight, screenWidth), (PreUtils.get(context, "enable_audio", false)) ? 1 : 0) == 0) {
                 start_screen_copy_magic();
             } else {
                 Toast.makeText(context, "Network OR ADB connection failed", Toast.LENGTH_SHORT).show();
